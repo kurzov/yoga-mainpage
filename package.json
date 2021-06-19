@@ -22,5 +22,10 @@
     "gulp-sass": "^4.1.0",
     "gulp-uglify-es": "^2.0.0",
     "jquery": "^3.6.0"
+  },
+  "dependencies": {
+    "jquery-fancybox": "^3.1.0",
+    "jquery-form-styler": "^2.0.2",
+    "slick-slider": "^1.8.2"
   }
 }

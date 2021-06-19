@@ -11,7 +11,10 @@ const uglify = require('gulp-uglify-es').default;
 const imagemin = require('gulp-imagemin');
 
 function html(){
-	return src('src/**.html')
+	return src([
+		'src/**.html',
+		'src/part/**.html'
+	])
 	.pipe(include({
 		prefix: '@@'
 	}))
@@ -36,6 +39,9 @@ function scss(){
 function scripts(){
 	return src([
 		'node_modules/jquery/dist/jquery.js',
+		'node_modules/jquery-form-styler/dist/jquery.formstyler.js',
+		'node_modules/slick-slider/slick/slick.js',
+		'node_modules/jquery-fancybox/source/js/jquery.fancybox.js',
 		'src/js/script.js',
 	])
 	.pipe(concat('main.min.js'))
@@ -78,6 +84,7 @@ function serve(){
 	watch('src/**.html', series(html)).on('change', sync.reload)
 	watch('src/css/**.scss', series(scss)).on('change', sync.reload)
 	watch('src/js/**.js', series(scripts)).on('change', sync.reload)
+	watch('src/image/**/*', series(images)).on('change', sync.reload)
 }
 
 exports.clear = clear
