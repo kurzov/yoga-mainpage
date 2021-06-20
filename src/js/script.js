@@ -3,6 +3,16 @@ $(document).ready(function(){
 		selectSmartPositioning: false,
 		selectPlaceholder: "Chose your class",
 	});
+	//mobile button menu
+	$('.btn-open-menu').click(function(){
+		$('.wrapper').addClass('open-menu');
+		$('body').css('overflow','hidden');
+	});
+	$('.btn-close-menu').click(function(){
+		$('.wrapper').removeClass('open-menu');
+		$('body').css('overflow','auto');
+	});
+
 	//fix header on scroll
 	var headerHeight = $('header').outerHeight();
 	$(window).scroll(function (){
@@ -16,7 +26,8 @@ $(document).ready(function(){
 	});
 	//scroll to
     $('header a').click(function() {
-        $('body').removeClass('open-menu');
+        $('.wrapper').removeClass('open-menu');
+		$('body').css('overflow','auto');
         var elementClick = $(this).attr("href");
         var destination = $(elementClick).offset().top - headerHeight;
         $("html:not(:animated),body:not(:animated)").animate({
