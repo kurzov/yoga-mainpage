@@ -3,6 +3,32 @@ $(document).ready(function(){
 		selectSmartPositioning: false,
 		selectPlaceholder: "Chose your class",
 	});
+	//fix header on scroll
+	var headerHeight = $('header').outerHeight();
+	$(window).scroll(function (){
+		if ( $(window).scrollTop() > 0){
+			$('.wrapper').css('padding-top', headerHeight,);
+			$('header').addClass('fixed');
+		} else{
+			$('.wrapper').css('padding-top', '0');
+			$('header').removeClass('fixed');
+		}
+	});
+	//scroll to
+    $('header a').click(function() {
+        $('body').removeClass('open-menu');
+        var elementClick = $(this).attr("href");
+        var destination = $(elementClick).offset().top - headerHeight;
+        $("html:not(:animated),body:not(:animated)").animate({
+             scrollTop: destination
+        }, 800);
+        return false;
+    });
+
+    $('.mobile-button-menu').click(function(){
+        $('body').toggleClass('open-menu');
+    });
+
 	$(document).find('.slick-cloned a').removeAttr('data-fancybox');
 	$("a.gallery-block").fancybox({
 		loop: true,
